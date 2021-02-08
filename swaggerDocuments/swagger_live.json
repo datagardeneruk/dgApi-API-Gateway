@@ -1,0 +1,477 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is Datagardener server. For All Documented APIs",
+      "version": "1.0.0",
+      "title": "Swagger Datagardener",
+      "termsOfService": "",
+      "contact": {
+        "email": "grow@datagardener.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "host": "j48u6k2yeg.execute-api.eu-west-2.amazonaws.com",
+    "basePath": "",
+    "tags": [
+      {
+        "name": "Datagardener",
+        "description": "UK Companies Data",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "https://datagardener.com"
+        }
+      }
+    ],
+    "schemes": [
+      "https"
+    ],
+    "paths": {
+      "/dg-login/authenticate": {
+        "post": {
+          "tags": [
+            "Authentication"
+          ],
+          "summary": "Login For Authentication",
+          "description": "",
+          "operationId": "login",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Login Credentials",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Login"
+              }
+            }
+          ],
+          "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+            }
+          ]
+        }
+      },
+      "/dg-api/getCompanyByCmpNoNew/{companyRegistrationNumber}": {
+        "get": {
+          "tags": [
+            "company"
+          ],
+          "summary": "Company Profile",
+          "description": "",
+          "operationId": "companyProfile",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "companyRegistrationNumber",
+              "description": "Company Number",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CompanyNumber"
+              }
+            },
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "an authorization header",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          ],
+          "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/dg-api/getRelatedCompaniesAndDirectorsByCmpNo/{companyRegistrationNumber}": {
+        "get": {
+          "tags": [
+            "company"
+          ],
+          "summary": "Related Company and directors",
+          "description": "",
+          "operationId": "relatedCompanyAndDirector",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "companyRegistrationNumber",
+              "description": "Company Number",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CompanyNumber"
+              }
+            }
+          ],
+          "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/dg-api/getListOfCompanyDocuments/{companyRegistrationNumber}": {
+        "get": {
+          "tags": [
+            "company"
+          ],
+          "summary": "Company Documents",
+          "description": "",
+          "operationId": "companyDocuments",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "companyRegistrationNumber",
+              "description": "Company Number",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CompanyNumber"
+              }
+            },
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "an authorization header",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          ],
+          "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/dg-api/getFinancialData/{companyRegistrationNumber}": {
+        "get": {
+          "tags": [
+            "company"
+          ],
+          "summary": "Company Financial",
+          "description": "",
+          "operationId": "companyFinancial",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "companyRegistrationNumber",
+              "description": "Company Number",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CompanyNumber"
+              }
+            },
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "an authorization header",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          ],
+          "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/dg-api/getRelatedCompanyToDirector/{pnr}": {
+        "get": {
+          "tags": [
+            "company"
+          ],
+          "summary": "Related Company to director",
+          "description": "",
+          "operationId": "relatedCompanyToDirector",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "pnr",
+              "description": "Director PNR",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/DirectorPNR"
+              }
+            }
+          ],
+          "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/dg-api/getDirectorDetails/{pnr}": {
+        "get": {
+          "tags": [
+            "company"
+          ],
+          "summary": "Director Profile",
+          "description": "",
+          "operationId": "directorProfile",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "pnr",
+              "description": "Director PNR",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/DirectorPNR"
+              }
+            }
+          ],
+          "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@domain.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "1gHySRA56aj>tf421o"
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "CompanyNumber": {
+          "type": "string",
+          "example": "10831906",
+        "xml": {
+          "name": "CompanyNumber"
+        }
+      },
+      "Token": {
+        "type": "string",
+        "example": "Basic d8e0321079a2a54b3ffdf2eb4316facf:50c7f4beb079b25006ef56076e12962c2ff095873786e8252635836d77d8a4ce65f0211b0a066f2c1fb76fab8d2373be8b66c0304f1633608369ebaadbad3c64c83c6641403af5a7cf612d3bb411ef808bc3f5cb981e5f69143e94316836b6528b94eee08f359f4daebc57236e1e85696089ed1c9c0162b3b5a584704ac61e3b19fca64940ef337f85d1073d4f94dd19112212eb2d6ca9ebb98396345c575ea29b11e8c038ab870babe8e444907d235a3535704aa0446a8e87228f9c8c567b87f4c3210d25474583842b6f5b2f883da095a3dedfdd3d3c821c612ceecc4efe82333a9aa31d59ebc2b22861d1e2cf656e8f6ccf79896e406f6dd8b178bc8a8159",
+      "xml": {
+        "name": "Token"
+      }
+      },
+      "DirectorPNR": {
+        "type": "string",
+        "example": "920855853",
+      "xml": {
+        "name": "DirectorPNR"
+      }
+      },
+      "Company": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "companyRegistrationNumber": {
+            "type": "string",
+            "example": "10831906"
+          },
+          "businessName": {
+            "type": "string",
+            "example": "data gardener limited"
+          },
+          "companyRegistrationDate": {
+            "type": "string",
+            "example": "22/06/2017"
+          },
+          "businessAlphaName": {
+            "type": "string",
+            "example": "datagardener"
+          },
+          "companyStatus": {
+            "type": "string",
+            "example": "live"
+          },
+          "primarySicCode07": {
+            "type": "object"
+          },
+          "primarySicCode03": {
+            "type": "object"
+          },
+          "companyType": {
+            "type": "string",
+            "example": "private limited with share capital"
+          },
+          "accountsType": {
+            "type": "string",
+            "example": "micro-entity accounts"
+          },
+          "contactDetails": {
+            "type": "object"
+          },
+          "directorsData": {
+            "type": "array"
+          },
+          "pscDetails": {
+            "type": "array"
+          },
+          "financialRatios": {
+            "type": "array"
+          },
+          "shareDetails": {
+            "type": "array"
+          },
+          "simplifiedAccounts": {
+            "type": "array"
+          },
+          "auditorsQualificationCodes": {
+            "type": "array"
+          },
+          "tradingAddress": {
+            "type": "array"
+          },
+          "companyCommentary": {
+            "type": "array"
+          }
+        },
+        "xml": {
+          "name": "Company"
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "externalDocs": {
+      "description": "Find out more about Swagger",
+      "url": "http://swagger.io"
+    }
+  }

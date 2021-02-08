@@ -1,0 +1,3073 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is Datagardener server. For All Documented APIs",
+    "version": "1.0.0",
+    "title": "Swagger Datagardener",
+    "termsOfService": "",
+    "contact": {
+      "email": "grow@datagardener.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "j48u6k2yeg.execute-api.eu-west-2.amazonaws.com",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/authenticate": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Authentication Token",
+        "description": "",
+        "operationId": "login",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User Credentials",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {}
+        ]
+      }
+    },
+
+    "/search": {
+      "post": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Company Search",
+        "description": "",
+        "operationId": "companySearch",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search Filters",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Filters"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {}
+        ]
+      }
+    },
+  
+    "/getDocumentListByCompany/{companyRegistrationNumber}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Company Documents",
+        "description": "",
+        "operationId": "companyDocuments",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+              "application/json":{
+                "status": 200,
+                "message": "Success",
+                "results": {
+                  "items_per_page": 100,
+                  "items": [
+                    {
+                      "category": "resolution",
+                      "date": "2020-07-23",
+                      "description": "resolution",
+                      "description_values": {
+                        "description": "Resolutions"
+                      },
+                      "links": {
+                        "self": "/company/00445790/filing-history/QTk4MzFINlFhZGlxemtjeA",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/UdFn8OzApaXYys9bmzYC_rHh7VoTevhz0xBZECW6H54"
+                      },
+                      "paper_filed": true,
+                      "resolutions": [
+                        {
+                          "category": "capital",
+                          "description": "resolution-removal-pre-emption",
+                          "subcategory": "resolution",
+                          "type": "RES11"
+                        },
+                        {
+                          "category": "capital",
+                          "description": "resolution-purchase-number-shares",
+                          "subcategory": "resolution",
+                          "type": "RES09"
+                        }
+                      ],
+                      "type": "RESOLUTIONS",
+                      "pages": 5,
+                      "barcode": null,
+                      "transaction_id": "QTk4MzFINlFhZGlxemtjeA"
+                    },
+                    {
+                      "action_date": "2020-02-29",
+                      "category": "accounts",
+                      "date": "2020-07-23",
+                      "description": "accounts-with-accounts-type-group",
+                      "description_values": {
+                        "made_up_date": "2020-02-29"
+                      },
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzI3MzY1NDg1OWFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/sXvwy62uXOm7U_UlhIQ5_rOWnGaCS-wvt4weN__WyMk"
+                      },
+                      "paper_filed": true,
+                      "type": "AA",
+                      "pages": 175,
+                      "barcode": "A9831QT6",
+                      "transaction_id": "MzI3MzY1NDg1OWFkaXF6a2N4"
+                    },
+                    {
+                      "action_date": "2020-06-18",
+                      "category": "confirmation-statement",
+                      "date": "2020-06-18",
+                      "description": "confirmation-statement-with-no-updates",
+                      "description_values": {
+                        "made_up_date": "2020-06-18"
+                      },
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzI2NzY3ODk4N2FkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/AMpW2GYJMOprMKmWGhPC0jg9vRuWYfHiLPgPCsVCMX4"
+                      },
+                      "type": "CS01",
+                      "pages": 3,
+                      "barcode": "X97HFEH6",
+                      "transaction_id": "MzI2NzY3ODk4N2FkaXF6a2N4"
+                    },
+                    {
+                      "action_date": "2019-07-31",
+                      "category": "officers",
+                      "date": "2020-03-05",
+                      "description": "change-person-director-company-with-change-date",
+                      "description_values": {
+                        "change_date": "2019-07-31",
+                        "officer_name": "Ms Melissa Bethell"
+                      },
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzI1OTA0ODcwNWFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/DY8g_v7zMXwYdALJMLBOowUTzlGwNXYUJ-FJh-77-DE"
+                      },
+                      "subcategory": "change",
+                      "type": "CH01",
+                      "pages": 2,
+                      "barcode": "X907A7DK",
+                      "transaction_id": "MzI1OTA0ODcwNWFkaXF6a2N4"
+                    },
+                    {
+                      "description": "change-person-director-company-with-change-date",
+                      "action_date": "2019-09-17",
+                      "type": "CH01",
+                      "description_values": {
+                        "officer_name": "Mr Mark Henry Armour",
+                        "change_date": "2019-09-17"
+                      },
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzI0NDYwNzU1MGFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/Mw2JX3NUZqy8_TwPkbHJSsZH1Xz-MygUbnurqpZZwvU"
+                      },
+                      "subcategory": "change",
+                      "category": "officers",
+                      "date": "2019-09-19",
+                      "pages": 2,
+                      "barcode": "X8ECEE75",
+                      "transaction_id": "MzI0NDYwNzU1MGFkaXF6a2N4"
+                    },
+                    {
+                      "description": "confirmation-statement-with-no-updates",
+                      "type": "CS01",
+                      "description_values": {
+                        "made_up_date": "2019-06-18"
+                      },
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzIzNzc3NTE5MWFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/iB6V24fqJHn1ljzKH_0ThOyfUqvJqekuWKaOJajsIv4"
+                      },
+                      "action_date": "2019-06-18",
+                      "date": "2019-06-25",
+                      "category": "confirmation-statement",
+                      "pages": 3,
+                      "barcode": "X88EAXWW",
+                      "transaction_id": "MzIzNzc3NTE5MWFkaXF6a2N4"
+                    },
+                    {
+                      "description_values": {
+                        "description": "Second filing of Confirmation Statement dated 18/06/2018"
+                      },
+                      "type": "RP04CS01",
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzIyOTgwMjYzMWFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/q6Q_NJsNcHyG_r7cx1RraKWJOFcSdxFHYDCbjAGViio"
+                      },
+                      "description": "legacy",
+                      "category": "miscellaneous",
+                      "paper_filed": true,
+                      "date": "2019-03-20",
+                      "pages": 4,
+                      "barcode": "A80MVAQG",
+                      "transaction_id": "MzIyOTgwMjYzMWFkaXF6a2N4"
+                    },
+                    {
+                      "action_date": "2018-10-25",
+                      "paper_filed": true,
+                      "description": "capital-allotment-shares",
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzIxODk1NDA1NGFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/px5YKX5SAuTS37ArqTSngml-qPMm865dlFcWD3ikKvY"
+                      },
+                      "date": "2018-11-09",
+                      "category": "capital",
+                      "type": "SH01",
+                      "description_values": {
+                        "capital": [
+                          {
+                            "figure": "489,674,828.05",
+                            "currency": "GBP"
+                          }
+                        ],
+                        "date": "2018-10-25"
+                      },
+                      "pages": 4,
+                      "barcode": "A7I4IR5S",
+                      "transaction_id": "MzIxODk1NDA1NGFkaXF6a2N4"
+                    },
+                    {
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzIxNzAyMTUyNmFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/5vmPz5VQLIt5IBeLUdRvLisGYh21K0mUYfwk6t6V-Ao"
+                      },
+                      "action_date": "2018-10-04",
+                      "paper_filed": true,
+                      "description": "capital-allotment-shares",
+                      "date": "2018-10-17",
+                      "category": "capital",
+                      "type": "SH01",
+                      "description_values": {
+                        "date": "2018-10-04",
+                        "capital": [
+                          {
+                            "figure": "489,674,303.50",
+                            "currency": "GBP"
+                          }
+                        ]
+                      },
+                      "pages": 6,
+                      "barcode": "A7GCK7N6",
+                      "transaction_id": "MzIxNzAyMTUyNmFkaXF6a2N4"
+                    },
+                    {
+                      "type": "AP01",
+                      "description": "appoint-person-director-company-with-name-date",
+                      "date": "2018-09-25",
+                      "action_date": "2018-09-24",
+                      "category": "officers",
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzIxNTM4MDIzNGFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/1bgx8r_k0ovgNWjhnShGq6EJi11oJNL4qYow-Yg2QM0"
+                      },
+                      "description_values": {
+                        "appointment_date": "2018-09-24",
+                        "officer_name": "Ms Melissa Bethell"
+                      },
+                      "subcategory": "appointments",
+                      "pages": 2,
+                      "barcode": "X7F79UOP",
+                      "transaction_id": "MzIxNTM4MDIzNGFkaXF6a2N4"
+                    },
+                    {
+                      "description_values": {
+                        "capital": [
+                          {
+                            "currency": "GBP",
+                            "figure": "489,666,249.45"
+                          }
+                        ],
+                        "date": "2018-09-06"
+                      },
+                      "type": "SH01",
+                      "date": "2018-09-21",
+                      "paper_filed": true,
+                      "action_date": "2018-09-06",
+                      "description": "capital-allotment-shares",
+                      "category": "capital",
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzIxNDY3MDI3NWFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/QIwXp2eHVZAHYJvGl4uUafSbLBe-9jaVYUKE3qI81Jg"
+                      },
+                      "pages": 8,
+                      "barcode": "A7EHQ6DC",
+                      "transaction_id": "MzIxNDY3MDI3NWFkaXF6a2N4"
+                    },
+                    {
+                      "action_date": "2018-02-24",
+                      "category": "accounts",
+                      "type": "AA",
+                      "description_values": {
+                        "made_up_date": "2018-02-24"
+                      },
+                      "description": "accounts-with-accounts-type-group",
+                      "links": {
+                        "self": "/company/00445790/filing-history/MzIxMTUzMzc0MGFkaXF6a2N4",
+                        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/imPppHOjTAMWUNr0H5E7UjS-5pOarOu6OaTJFICuOoM"
+                      },
+                      "paper_filed": true,
+                      "date": "2018-08-07",
+                      "pages": 159,
+                      "barcode": "R7BQP1EQ",
+                      "transaction_id": "MzIxMTUzMzc0MGFkaXF6a2N4"
+                    }
+                  ],
+                  "total_count": 7964,
+                  "filing_history_status": "filing-history-available",
+                  "start_index": 0
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getAcquisitonMergerInformationByCompany/{companyRegistrationNumber}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Acquisiton Merger Information",
+        "description": "",
+        "operationId": "acquisitonMergerInformation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+                "application/json":{
+                  "status": 200,
+                  "message": "Success",
+                  "results": [
+                    {
+                      "acquiringCompanyRegistrationNumber": "05169780",
+                      "acquiringCompanyName": "tesco plc",
+                      "acquiredCompanyRegistrationNumber": "04624743",
+                      "acquiredCompanyName": "cintas document management uk limited",
+                      "acquiredDate": "07/10/2014",
+                      "considerationPart1": "235 million",
+                      "considerationPart2": null,
+                      "enquiryContact1": "charles skinner, chief executive",
+                      "phoneContact1": "07966 234 075",
+                      "enquiryContact2": "adam councell, group finance director",
+                      "phoneContact2": "07860 402 434",
+                      "freeFormatComment": "for the twelve months ended 31 may 2014, cdmuk recorded ebita of 02 million, and an operating loss of 04 million after amortisation of goodwill of 06 million total revenues were 197 million, of which 129 million was attributable to records management, 64 million to scanning services and 04 million to nontransferring revenues the net assets of cdmuk as at 31 may 2014 were 192 million"
+                    },
+                    {
+                      "acquiringCompanyRegistrationNumber": "05169780",
+                      "acquiringCompanyName": "tesco plc",
+                      "acquiredCompanyRegistrationNumber": "06535461",
+                      "acquiredCompanyName": "ancora solutions",
+                      "acquiredDate": "02/01/2015",
+                      "considerationPart1": "500,000",
+                      "considerationPart2": null,
+                      "enquiryContact1": "charles skinner, chief executive",
+                      "phoneContact1": "07966 234 075",
+                      "enquiryContact2": "adam councell, group finance director",
+                      "phoneContact2": "07860 402 434",
+                      "freeFormatComment": null
+                    }
+                  ]
+                }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getComprehensiveDetailsByCompany/{companyRegistrationNumber}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Company Profile",
+        "description": "",
+        "operationId": "companyProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+              "application/json":{
+                "status": 200,
+                "message": "Success",
+                "results": {
+                  "id": "5eb135d7983795b898ea0c67",
+                  "companyRegistrationNumber": "00445790",
+                  "businessName": "tesco plc",
+                  "companyRegistrationDate": "27/11/1947",
+                  "businessAlphaName": "tes",
+                  "companyStatus": "live",
+                  "companyLiquidationStatus": "",
+                  "administrationOrderFlag": "",
+                  "voluntaryAgreementFlag": "",
+                  "inAdministrationFlag": "",
+                  "receiveManagerFlag": "",
+                  "latestAnnualReturnDate": "18/06/2020",
+                  "nextAnnualReturnDate": null,
+                  "accountsFilingDate": "27/06/2020",
+                  "latestDateOfAccounts": "29/02/2020",
+                  "accountsDueDate": "26/08/2021",
+                  "accountsMadeUpDate": "29/02/2020",
+                  "accountsReferenceDate": "2602",
+                  "charityNumber": "",
+                  "ftsea": "ftse100",
+                  "ftset": "Not FTSET",
+                  "primarySicCode07": {
+                    "code": "47110",
+                    "description": "retail sale in non-specialised stores with food, beverages or tobacco predominating"
+                  },
+                  "primarySicCode03": {
+                    "code": "5211",
+                    "description": "retail in non-specialised stores holding an alcohol licence, with food, beverages or tobacco predominating, not elsewhere classified"
+                  },
+                  "accountsType": "group",
+                  "companyType": "public limited with share capital",
+                  "sicCode03": {
+                    "SicNumber_1": "5211",
+                    "SicText_1": "retail in non-specialised stores holding an alcohol licence, with food, beverages or tobacco predominating, not elsewhere classified"
+                  },
+                  "sicCode07": {
+                    "SicNumber_1": "47110",
+                    "SicText_1": "retail sale in non-specialised stores with food, beverages or tobacco predominating"
+                  },
+                  "sicCode_2": {
+                    "SicNumber_1": "47",
+                    "SicText_1": "retail sale in non-specialised stores with food, beverages or tobacco predominating"
+                  },
+                  "sicCode_3": {
+                    "SicNumber_1": "471",
+                    "SicText_1": "retail sale in non-specialised stores with food, beverages or tobacco predominating"
+                  },
+                  "sicCode_4": {
+                    "SicNumber_1": "4711",
+                    "SicText_1": "retail sale in non-specialised stores with food, beverages or tobacco predominating"
+                  },
+                  "Industries": {
+                    "SicText_1": "retail sale in non-specialised stores with food, beverages or tobacco predominating",
+                    "SicIndustry_1": "wholesale and retail trade; repair of motor vehicles and motorcycles"
+                  },
+                  "pin": {
+                    "companyLocation": {
+                      "lat": 51.809974,
+                      "lon": -0.196346
+                    }
+                  },
+                  "RegAddress_Modified": {
+                    "addressLine1": "tesco house shire park",
+                    "addressLine2": "kestrel way",
+                    "addressLine3": "welwyn garden city",
+                    "addressLine4": "",
+                    "postalCode": "al71ga",
+                    "telephone": "",
+                    "ctps": "n",
+                    "website": "tescoplc.com",
+                    "regPobox": "",
+                    "regCareOfAddress": "",
+                    "regOfficeAreaCode": "al 7",
+                    "country": "england",
+                    "local_authority_name": "welwyn hatfield",
+                    "ward_name": "haldens",
+                    "region": "east of england",
+                    "parliament_constituency_name": "welwyn hatfield",
+                    "european_electoral_region_name": "eastern",
+                    "primary_trust_name": "hertfordshire",
+                    "district_code": "al7",
+                    "county": "hertfordshire"
+                  },
+                  "hascontactInfo": true,
+                  "contactDetails": {
+                    "addressLine1": "tesco house shire park",
+                    "addressLine2": "kestrel way",
+                    "addressLine3": "welwyn garden city",
+                    "addressLine4": "",
+                    "postalCode": "al7 1ga",
+                    "telephone": "",
+                    "ctps": "n",
+                    "website": "tescoplc.com",
+                    "regPobox": "",
+                    "regCareOfAddress": "",
+                    "regOfficeAreaCode": "al 7"
+                  },
+                  "hasWebsite": true,
+                  "hasContactNumber": false,
+                  "previousNames": [
+                    {
+                      "name": "tesco stores (holdings) public limited company",
+                      "dateChanged": "25/08/1983",
+                      "alphaName": "tescostoresholdings",
+                      "uniqueKey": 4745235
+                    }
+                  ],
+                  "principalActivityDetails": [
+                    {
+                      "rowRank": "1",
+                      "description": "a group engaged in retailing and associated activities in the uk, the republic of ireland, hungary, poland, the czech republic, slovakia, turkey, thailand, south korea, malaysia, japan and china."
+                    }
+                  ],
+                  "activeDirectorsCount": 14,
+                  "resingedDirectorsCount": 48,
+                  "totalDirectorsCount": 62,
+                  "directorsData": [
+                    {
+                      "directorTitle": "ms",
+                      "postalTitle": "ms l.j. neville-rolfe",
+                      "fromDate": "15/03/2004",
+                      "toDate": "14/12/2006",
+                      "directorRole": "company secretary",
+                      "directorQualifications": "",
+                      "directorJobRole": "company director",
+                      "directorOccupation": "",
+                      "addressId": "78638",
+                      "serviceAddressFlag": "y",
+                      "appointmentDate": 1,
+                      "resignationDate": 1,
+                      "directorNumberAddressLevel": 1,
+                      "changeUpdatedInCompanyHouse": "05/01/2011",
+                      "changeRegisteredSubmittedDate": "05/01/2011",
+                      "appointment": "previous appointment",
+                      "position": "secretary",
+                      "detailedInformation": {
+                        "initials": "lj",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "lucy",
+                        "middlename": "jeanne",
+                        "surname": "neville-rolfe",
+                        "addressLine1": "new tesco house",
+                        "addressLine2": "delamare road",
+                        "addressLine3": "cheshunt",
+                        "addressLine4": "hertfordshire",
+                        "addressLine5": "",
+                        "postalCode": "en8 9sl",
+                        "country": "",
+                        "birthdDate": "02/01/1953",
+                        "fullBirthDateFlag": "y",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "",
+                        "directorNumberAddressLevel": 1,
+                        "changeUpdatedInCompanyHouse": "15/08/2013",
+                        "changeRegisteredSubmittedDate": null,
+                        "fullname": "lucy jeanne neville-rolfe ",
+                        "nationality": "british",
+                        "nationalityName": "u.kingdom"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "new tesco house",
+                        "addressLine2": "delamare road",
+                        "addressLine3": "cheshunt",
+                        "addressLine4": "hertfordshire",
+                        "addressLine5": "",
+                        "postalCode": "en8 9sl",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      }
+                    },
+                    {
+                      "directorTitle": "mr",
+                      "postalTitle": "mr j.m. allan",
+                      "fromDate": "01/03/2015",
+                      "toDate": null,
+                      "directorRole": "director",
+                      "directorQualifications": "",
+                      "directorJobRole": "chairman",
+                      "directorOccupation": "",
+                      "addressId": "13875878",
+                      "serviceAddressFlag": "y",
+                      "appointmentDate": 1,
+                      "resignationDate": 0,
+                      "directorNumberAddressLevel": 4,
+                      "changeUpdatedInCompanyHouse": "20/03/2019",
+                      "changeRegisteredSubmittedDate": null,
+                      "appointment": "current appointment",
+                      "position": "director",
+                      "detailedInformation": {
+                        "initials": "jm",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "john",
+                        "middlename": "murray",
+                        "surname": "allan",
+                        "addressLine1": "100 victoria embankment",
+                        "addressLine2": "",
+                        "addressLine3": "london",
+                        "addressLine4": "",
+                        "addressLine5": "",
+                        "postalCode": "ec4y 0hq",
+                        "country": "united kingdom",
+                        "birthdDate": "20/08/1948",
+                        "fullBirthDateFlag": "y",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "england",
+                        "directorNumberAddressLevel": 4,
+                        "changeUpdatedInCompanyHouse": "20/03/2019",
+                        "changeRegisteredSubmittedDate": null,
+                        "fullname": "john murray allan ",
+                        "nationality": "british",
+                        "nationalityName": "u.kingdom"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "tesco house, shire park",
+                        "addressLine2": "kestrel way",
+                        "addressLine3": "welwyn garden city",
+                        "addressLine4": "",
+                        "addressLine5": "united kingdom",
+                        "postalCode": "al7 1ga",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      }
+                    }
+                  ],
+                  "financialRatios": [
+                    {
+                      "yearStartDate": "01/03/2014",
+                      "yearEndDate": "28/02/2015",
+                      "preTaxProfitPercentage": "-10.24",
+                      "currentRatio": ".6",
+                      "salesPerNetworkingCapital": "-7.93",
+                      "gearingPercentage": "273.5",
+                      "equityInPercentage": "17.5",
+                      "creditorDays": "29.66",
+                      "debtorDays": "1.06",
+                      "liquidityPerAcidTest": ".45",
+                      "returnOnCapitalEmployedPercentage": "-26.12",
+                      "returnOnTotalAssetsEmployedPercentage": "-14.42",
+                      "currentDebtRatio": "2.8",
+                      "totalDebtRatio": "5.25",
+                      "stockTurnoverRatio": "4.74",
+                      "returnNetAssetsEmployedPercentage": "-90.17",
+                      "startYear": "2014",
+                      "startMonth": "03",
+                      "startDate": "01",
+                      "endYear": "2015",
+                      "endMonth": "02",
+                      "endDate": "28"
+                    },
+                    {
+                      "yearStartDate": "27/02/2016",
+                      "yearEndDate": "25/02/2017",
+                      "preTaxProfitPercentage": ".26",
+                      "currentRatio": ".78",
+                      "salesPerNetworkingCapital": "-12.91",
+                      "gearingPercentage": "325.3",
+                      "equityInPercentage": "14.9",
+                      "creditorDays": "31.98",
+                      "debtorDays": "4.53",
+                      "liquidityPerAcidTest": ".65",
+                      "returnOnCapitalEmployedPercentage": ".54",
+                      "returnOnTotalAssetsEmployedPercentage": ".31",
+                      "currentDebtRatio": "3.01",
+                      "totalDebtRatio": "6.12",
+                      "stockTurnoverRatio": "4.11",
+                      "returnNetAssetsEmployedPercentage": "2.25",
+                      "startYear": "2016",
+                      "startMonth": "02",
+                      "startDate": "27",
+                      "endYear": "2017",
+                      "endMonth": "02",
+                      "endDate": "25"
+                    }
+                  ],
+                  "simplifiedAccounts": [
+                    {
+                      "yearStartDate": "01/03/2014",
+                      "yearEndDate": "28/02/2015",
+                      "numberOfMonths": "12",
+                      "currency": "gbp",
+                      "consolidatedAccount": "y",
+                      "turnover": 62284000000,
+                      "profitBeforeTax": -6376000000,
+                      "profitAfterTax": -5719000000,
+                      "cashInBank": 2165000000,
+                      "totalCurrentAssets": 11958000000,
+                      "totalAssets": 44214000000,
+                      "totalCurrentLiabilities": 19810000000,
+                      "totalLiabilities": 37143000000,
+                      "totalShareholdersEquity": 7071000000,
+                      "netWorth": 3300000000,
+                      "numberOfEmplyees": 506984,
+                      "auditors": "pricewaterhousecoopers llp",
+                      "accountantName": "",
+                      "startYear": "2014",
+                      "startMonth": "03",
+                      "startDate": "01",
+                      "endYear": "2015",
+                      "endMonth": "02",
+                      "endDate": "28",
+                      "accountsFiled": "ifrs"
+                    },
+                    {
+                      "yearStartDate": "27/02/2016",
+                      "yearEndDate": "25/02/2017",
+                      "numberOfMonths": "12",
+                      "currency": "gbp",
+                      "consolidatedAccount": "y",
+                      "turnover": 55917000000,
+                      "profitBeforeTax": 145000000,
+                      "profitAfterTax": 58000000,
+                      "cashInBank": 3821000000,
+                      "totalCurrentAssets": 15073000000,
+                      "totalAssets": 45877000000,
+                      "totalCurrentLiabilities": 19405000000,
+                      "totalLiabilities": 39439000000,
+                      "totalShareholdersEquity": 6438000000,
+                      "netWorth": 3721000000,
+                      "numberOfEmplyees": 464520,
+                      "auditors": "deloitte llp",
+                      "accountantName": "",
+                      "startYear": "2016",
+                      "startMonth": "02",
+                      "startDate": "27",
+                      "endYear": "2017",
+                      "endMonth": "02",
+                      "endDate": "25",
+                      "accountsFiled": "ifrs"
+                    }
+                  ],
+                  "auditorsQualificationCodes": [
+                    {
+                      "accountsDate": "29/02/2020",
+                      "solicitorsName": "",
+                      "accountantsName": "",
+                      "auditors": "deloitte llp",
+                      "auditQualificationCode": "the audit report contains no adverse comments",
+                      "jointAuditors": "",
+                      "accountsDateYear": "2020",
+                      "accountsDateMonth": "02",
+                      "accountsDateDate": "29"
+                    },
+                    {
+                      "accountsDate": "23/02/2019",
+                      "solicitorsName": "",
+                      "accountantsName": "",
+                      "auditors": "deloitte llp",
+                      "auditQualificationCode": "the audit report contains no adverse comments",
+                      "jointAuditors": "",
+                      "accountsDateYear": "2019",
+                      "accountsDateMonth": "02",
+                      "accountsDateDate": "23"
+                    }
+                  ],
+                  "hasCharges": true,
+                  "mortgagesObj": [
+                    {
+                      "mortgageNumber": 8,
+                      "regDate": "06/11/2009",
+                      "createdDate": "04/11/2009",
+                      "satisfiedDate": null,
+                      "lastChangeDate": "07/05/2019",
+                      "memorandumNature": "",
+                      "chargeCode": "004457900008",
+                      "mortgageDetails": [
+                        {
+                          "mortgageNumber": 8,
+                          "recordId": "15",
+                          "recordType": "mortgage type",
+                          "seqNumber": 1,
+                          "description": "account security agreement",
+                          "chargeCode": "004457900008"
+                        },
+                        {
+                          "mortgageNumber": 8,
+                          "recordId": "40",
+                          "recordType": "persons entitled",
+                          "seqNumber": 1,
+                          "description": "tesco ireland pension trustees limited as trustee of the tesco ireland limited pension plan ;",
+                          "chargeCode": "004457900008"
+                        },
+                        {
+                          "mortgageNumber": 8,
+                          "recordId": "25",
+                          "recordType": "amount secured",
+                          "seqNumber": 1,
+                          "description": "all sums due or to become due under theterms of the aforementioned instrument creating or evidencing the charge",
+                          "chargeCode": "004457900008"
+                        },
+                        {
+                          "mortgageNumber": 8,
+                          "recordId": "35",
+                          "recordType": "mortgage detail",
+                          "seqNumber": 1,
+                          "description": "right title benefit and interest in andto the account being the euro designated account in the name of the company with sort code 40-05-15 account number 67851125, and the deposit. see image for full details",
+                          "chargeCode": "004457900008"
+                        }
+                      ]
+                    },
+                    {
+                      "mortgageNumber": 4,
+                      "regDate": "16/08/2001",
+                      "createdDate": "31/07/2001",
+                      "satisfiedDate": "09/10/2009",
+                      "lastChangeDate": "07/05/2019",
+                      "memorandumNature": "f",
+                      "chargeCode": "004457900004",
+                      "mortgageDetails": [
+                        {
+                          "mortgageNumber": 4,
+                          "recordId": "40",
+                          "recordType": "persons entitled",
+                          "seqNumber": 1,
+                          "description": "deutsche international finance (ireland) limited ;",
+                          "chargeCode": "004457900004"
+                        },
+                        {
+                          "mortgageNumber": 4,
+                          "recordId": "25",
+                          "recordType": "amount secured",
+                          "seqNumber": 1,
+                          "description": "all monies due or to become due from the company to the chargee under the deedand the payments and discharge of the guaranteed amounts (as defined)",
+                          "chargeCode": "004457900004"
+                        },
+                        {
+                          "mortgageNumber": 4,
+                          "recordId": "35",
+                          "recordType": "mortgage detail",
+                          "seqNumber": 1,
+                          "description": "all tesco uk's right,title and interestin and to the obligation of dbag nz to pay the aggregate of the amounts and theproceeds thereof see the mortgage charge document for full details",
+                          "chargeCode": "004457900004"
+                        },
+                        {
+                          "mortgageNumber": 4,
+                          "recordId": "15",
+                          "recordType": "mortgage type",
+                          "seqNumber": 1,
+                          "description": "primary obligor guarantee,undertaking and indemnity deed",
+                          "chargeCode": "004457900004"
+                        }
+                      ]
+                    }
+                  ],
+                  "hasLandCorporate": false,
+                  "hasCCJInfo": true,
+                  "ccjDetails": [
+                    {
+                      "id": "5eb18f2a7a3ffdcf264138ad",
+                      "companyRegistrationNumber": "00445790",
+                      "caseNumber": "g3at671v",
+                      "ccjDate": "25/03/2020",
+                      "ccjAmount": 9139,
+                      "court": "county court business centre",
+                      "ccjPaidDate": null,
+                      "splitFlag": null,
+                      "businessName": "tesco plc",
+                      "incomingRecordDetails": "tesco plc, tesco house, shire park, kestrel way, al7 1ga, al7 1ga",
+                      "plantiffName": null,
+                      "plantiffForeName": null,
+                      "plantiffSurName": null,
+                      "plantiffAddressLine1": null,
+                      "plantiffAddressLine2": null,
+                      "plantiffAddressLine3": null,
+                      "plantiffAddressLine4": null,
+                      "plantiffAddressLine5": null,
+                      "plantiffPostCode": null,
+                      "plantiffTelephone": null,
+                      "manualUpdateFlag": null,
+                      "amendFlag": null,
+                      "ccjStatus": "new judgment",
+                      "type": "ccj"
+                    },
+                    {
+                      "id": "5eb18f2a7a3ffdcf264138ac",
+                      "companyRegistrationNumber": "00445790",
+                      "caseNumber": "f45yy177",
+                      "ccjDate": "03/03/2020",
+                      "ccjAmount": 1291,
+                      "court": "county court money claims centre",
+                      "ccjPaidDate": null,
+                      "splitFlag": null,
+                      "businessName": "tesco plc",
+                      "incomingRecordDetails": "tesco plc, tesco house, shire park, kestrel way, al7 1ga, al7 1ga",
+                      "plantiffName": null,
+                      "plantiffForeName": null,
+                      "plantiffSurName": null,
+                      "plantiffAddressLine1": null,
+                      "plantiffAddressLine2": null,
+                      "plantiffAddressLine3": null,
+                      "plantiffAddressLine4": null,
+                      "plantiffAddressLine5": null,
+                      "plantiffPostCode": null,
+                      "plantiffTelephone": null,
+                      "manualUpdateFlag": null,
+                      "amendFlag": null,
+                      "ccjStatus": "new judgment",
+                      "type": "ccj"
+                    }
+                  ],
+                  "hasPossibleCCJInfo": true,
+                  "possibleCCJDeatils": [
+                    {
+                      "id": "5eb18f362ae550749c3c4c67",
+                      "companyRegistrationNumber": "00445790",
+                      "caseNumber": "8bk00469",
+                      "ccjDate": "23/06/2008",
+                      "ccjAmount": 269,
+                      "court": "basingstoke",
+                      "ccjPaidDate": null,
+                      "businessName": "",
+                      "incomingRecordDetails": "tesco ltd, shopping centre, chineham, basingstoke, hampshire, rg24 8uv",
+                      "plantiffName": "",
+                      "plantiffForeName": "",
+                      "plantiffSurName": "",
+                      "plantiffAddressLine1": "",
+                      "plantiffAddressLine2": "",
+                      "plantiffAddressLine3": "",
+                      "plantiffAddressLine4": "",
+                      "plantiffAddressLine5": "",
+                      "plantiffPostCode": "",
+                      "plantiffTelephone": "",
+                      "manualUpdateFlag": "",
+                      "amendFlag": "",
+                      "highCourtIndicator": "",
+                      "ccjStatus": "new judgment",
+                      "type": "ccj"
+                    }
+                  ],
+                  "hasTradingAddress": true,
+                  "hasFinances": true,
+                  "hasSafeAlerts": false,
+                  "hasShareHolders": true,
+                  "hasGroupStructure": true,
+                  "hasAcquiringCompany": false,
+                  "hasAcquiredCompany": false,
+                  "voScore_updated": 0,
+                  "avgPBT": 875400000,
+                  "avgCE_updated": 29379000000,
+                  "roe": 0.029796793628101705,
+                  "roePercent": 2.9796793628101703,
+                  "statutoryAccounts": [
+                    {
+                      "id": "5eb14824ccc1e2612693523b",
+                      "companyRegistrationNumber": "00445790",
+                      "yearStartDate": "01/03/2014",
+                      "yearEndDate": "28/02/2015",
+                      "numberOfWeeks": "52",
+                      "numberOfMonths": "12",
+                      "currency": "gbp",
+                      "consolidatedAccount": "y",
+                      "turnover": 62284000000,
+                      "export": null,
+                      "costOfSales": 64396000000,
+                      "grossProfit": -2112000000,
+                      "wagesAndSalaries": 8269000000,
+                      "directorsRemuneration": 7530000,
+                      "operatingProfit": -5792000000,
+                      "depreciation": 1293000000,
+                      "auditFees": 5400000,
+                      "interestExpense": 661000000,
+                      "profitBeforeTax": -6376000000,
+                      "taxation": 657000000,
+                      "profitAfterTax": -5719000000,
+                      "dividends": 914000000,
+                      "retainedProfit": -6658000000,
+                      "tangibleAssets": 28485000000,
+                      "intangibleAssets": 3771000000,
+                      "totalFixedAssets": 32256000000,
+                      "totalCurrentAssets": 11958000000,
+                      "tradeDebtors": 183000000,
+                      "stock": 2957000000,
+                      "cash": 2165000000,
+                      "otherCurrentAssets": 1938000000,
+                      "increaseInCash": -717000000,
+                      "miscCurrentAssets": 4715000000,
+                      "totalAssets": 44214000000,
+                      "totalCurrentLiabilities": 19810000000,
+                      "tradeCreditors": 5076000000,
+                      "bankBorrowingsCurrent": 2008000000,
+                      "otherShortTermFinance": 89000000,
+                      "miscCurrentLiabilities": 12637000000,
+                      "otherLongTermFinance": 0,
+                      "totalLongTermLiabilities": 17333000000,
+                      "bankOverdraftAndLTL": 19341000000,
+                      "totalLiabilities": 37143000000,
+                      "netAssets": 7071000000,
+                      "workingCapital": -7852000000,
+                      "issuedShareCapital": 406000000,
+                      "revenueReserves": 1985000000,
+                      "otherReserves": 4680000000,
+                      "revaluationReserve": 0,
+                      "totalShareholdersEquity": 7071000000,
+                      "netWorth": 3300000000,
+                      "netCashFlowFromOperations": 484000000,
+                      "netCashFlowBeforeFinancing": -1531000000,
+                      "netCashFlowFromFinancing": 814000000,
+                      "contingentLiabilities": null,
+                      "capitalEmployed": 24404000000,
+                      "numberOfEmployees": 506984,
+                      "accountStatus": "analysed",
+                      "accountType": "ifrs"
+                    }
+                  ],
+                  "shareDetails": [
+                    {
+                      "id": "5ef863541feafd873e0c3d1b",
+                      "shareholderPNRNumber": "71258971",
+                      "companyRegistrationNumber": "00445790",
+                      "numberOfSharesIssued": 8174160481,
+                      "shareType": "ordinary",
+                      "shareClasses": "",
+                      "value": 0.05,
+                      "currency": "gbp",
+                      "share_holders_details": {
+                        "id": "5ef862793bce019755d2baef",
+                        "shareholderTitle": "",
+                        "shareholderForename": "",
+                        "shareholderSurname": "undisclosed",
+                        "shareholderAddress1": "",
+                        "shareholderAddress2": "",
+                        "shareholderAddress3": "",
+                        "shareholderAddress4": "",
+                        "shareholderAddress5": "",
+                        "shareholderPostcode": ""
+                      },
+                      "totalShareCount": 408708024.05,
+                      "total_shares": 8174160481,
+                      "percentage_share": "100.00"
+                    }
+                  ],
+                  "tradingAddress": [
+                    {
+                      "id": "5eb1b796108f863ed5c64826",
+                      "companyRegistrationNumber": "00445790",
+                      "addressNumber": "23",
+                      "tradingAddress1": "38 holme lacy road",
+                      "tradingAddress2": "hereford",
+                      "tradingAddress3": "herefordshire",
+                      "tradingAddress4": null,
+                      "postalCode": "hr26by",
+                      "tradingSTDCode": "0345",
+                      "telephone": "6757251",
+                      "tradingCTPSFlag": "n",
+                      "registeredOfficeFlag": null,
+                      "headOfficeFlag": null,
+                      "solicitorsAddressFlag": null,
+                      "accountantsAddressFlag": null
+                    },
+                    {
+                      "id": "5eb1b796108f863ed5c6482c",
+                      "companyRegistrationNumber": "00445790",
+                      "addressNumber": "21",
+                      "tradingAddress1": "52-58 high street",
+                      "tradingAddress2": "ventnor",
+                      "tradingAddress3": "isle of wight",
+                      "tradingAddress4": null,
+                      "postalCode": "po381lt",
+                      "tradingSTDCode": "0345",
+                      "telephone": "6102703",
+                      "tradingCTPSFlag": "n",
+                      "registeredOfficeFlag": null,
+                      "headOfficeFlag": null,
+                      "solicitorsAddressFlag": null,
+                      "accountantsAddressFlag": null
+                    }
+                  ],
+                  "documents": {
+                    "items_per_page": 100,
+                    "filing_history_status": "filing-history-available",
+                    "total_count": 7964, 
+                    "items": [
+                      {
+                        "category": "resolution",
+                        "date": "2020-07-23",
+                        "description": "resolution",
+                        "description_values": {
+                          "description": "Resolutions"
+                        },
+                        "links": {
+                          "self": "/company/00445790/filing-history/QTk4MzFINlFhZGlxemtjeA",
+                          "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/UdFn8OzApaXYys9bmzYC_rHh7VoTevhz0xBZECW6H54"
+                        },
+                        "paper_filed": true,
+                        "resolutions": [
+                          {
+                            "category": "capital",
+                            "description": "resolution-removal-pre-emption",
+                            "subcategory": "resolution",
+                            "type": "RES11"
+                          },
+                          {
+                            "category": "capital",
+                            "description": "resolution-purchase-number-shares",
+                            "subcategory": "resolution",
+                            "type": "RES09"
+                          },
+                          {
+                            "category": "capital",
+                            "description": "resolution",
+                            "description_values": {
+                              "description": "Co business 26/06/2020"
+                            },
+                            "subcategory": "resolution",
+                            "type": "RES13"
+                          },
+                          {
+                            "category": "capital",
+                            "description": "resolution-securities",
+                            "subcategory": "resolution",
+                            "type": "RES10"
+                          }
+                        ],
+                        "type": "RESOLUTIONS",
+                        "pages": 5,
+                        "barcode": null,
+                        "transaction_id": "QTk4MzFINlFhZGlxemtjeA"
+                      },
+                      {
+                        "action_date": "2020-02-29",
+                        "category": "accounts",
+                        "date": "2020-07-23",
+                        "description": "accounts-with-accounts-type-group",
+                        "description_values": {
+                          "made_up_date": "2020-02-29"
+                        },
+                        "links": {
+                          "self": "/company/00445790/filing-history/MzI3MzY1NDg1OWFkaXF6a2N4",
+                          "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/sXvwy62uXOm7U_UlhIQ5_rOWnGaCS-wvt4weN__WyMk"
+                        },
+                        "paper_filed": true,
+                        "type": "AA",
+                        "pages": 175,
+                        "barcode": "A9831QT6",
+                        "transaction_id": "MzI3MzY1NDg1OWFkaXF6a2N4"
+                      },
+                      {
+                        "action_date": "2020-06-18",
+                        "category": "confirmation-statement",
+                        "date": "2020-06-18",
+                        "description": "confirmation-statement-with-no-updates",
+                        "description_values": {
+                          "made_up_date": "2020-06-18"
+                        },
+                        "links": {
+                          "self": "/company/00445790/filing-history/MzI2NzY3ODk4N2FkaXF6a2N4",
+                          "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/AMpW2GYJMOprMKmWGhPC0jg9vRuWYfHiLPgPCsVCMX4"
+                        },
+                        "type": "CS01",
+                        "pages": 3,
+                        "barcode": "X97HFEH6",
+                        "transaction_id": "MzI2NzY3ODk4N2FkaXF6a2N4"
+                      },
+                      {
+                        "category": "resolution",
+                        "date": "2020-05-22",
+                        "description": "resolution",
+                        "description_values": {
+                          "description": "Resolutions"
+                        },
+                        "links": {
+                          "self": "/company/00445790/filing-history/QTk1RUxFNVRhZGlxemtjeA",
+                          "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/ozcIe4ATFMF-wck5n9a_KTMLUiTy_E6KNAhMWy_71bE"
+                        },
+                        "paper_filed": true,
+                        "resolutions": [
+                          {
+                            "category": "capital",
+                            "description": "resolution",
+                            "description_values": {
+                              "description": "Disposal/directors authorisation 14/05/2020"
+                            },
+                            "subcategory": "resolution",
+                            "type": "RES13"
+                          }
+                        ],
+                        "type": "RESOLUTIONS",
+                        "pages": 1,
+                        "barcode": null,
+                        "transaction_id": "QTk1RUxFNVRhZGlxemtjeA"
+                      }
+                    ],
+                    "start_index": 0
+                  },
+                  "getGroupStructure": [
+                    {
+                      "id": "5f5262f41541db3086474c43",
+                      "ultimateParentCompanyRegistrationNumber": "00445790",
+                      "parentCompanyRegistrationNumber": "00445790",
+                      "companyRegistrationNumber": "00299400",
+                      "businessName": "stewarts supermarkets limited",
+                      "country": null,
+                      "companyLevelGroup": 1,
+                      "holdingType": "wholly owned by",
+                      "ultimateParentBusinessName": "tesco plc",
+                      "parentBusinessName": "tesco plc"
+                    },
+                    {
+                      "id": "5f5262f41541db3086474c6a",
+                      "ultimateParentCompanyRegistrationNumber": "00445790",
+                      "parentCompanyRegistrationNumber": "04340809",
+                      "companyRegistrationNumber": "00065519",
+                      "businessName": "giant booker limited",
+                      "country": null,
+                      "companyLevelGroup": 7,
+                      "holdingType": "wholly owned by",
+                      "ultimateParentBusinessName": "tesco plc",
+                      "parentBusinessName": "bf limited"
+                    }
+                  ],
+                  "companyCommentary": [
+                    {
+                      "id": "5eb1907f190d6dfbae86dfa0",
+                      "companyRegistrationNumber": "00445790",
+                      "commentaryCode": "39",
+                      "dateLogged": "06/12/2019",
+                      "commentaryText": "the latest accounts show a large increase in equity in comparison to the previous year.",
+                      "commentaryPriority": "10",
+                      "commentaryImpact": "+"
+                    },
+                    {
+                      "id": "5eb1907f190d6dfbae86dfb2",
+                      "companyRegistrationNumber": "00445790",
+                      "commentaryCode": "16",
+                      "dateLogged": "06/12/2019",
+                      "commentaryText": "this company has been treated as a plc company in terms of the score/limit that has been generated",
+                      "commentaryPriority": "1",
+                      "commentaryImpact": null
+                    }
+                  ],
+                  "hasCompanyCommentary": true
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getCompanyRiskProfileByCompany/{companyRegistrationNumber}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Company Risk Profile",
+        "description": "",
+        "operationId": "companyRiskProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+              "application/json":{
+                "status": 200,
+                "message": "Success",
+                "results": {
+                  "companyRegistrationNumber": "00445790",
+                  "businessName": "tesco plc",
+                  "companyRegistrationDate": "27/11/1947",
+                  "businessAlphaName": "tes",
+                  "companyStatus": "live",
+                  "companyLiquidationStatus": "",
+                  "administrationOrderFlag": "",
+                  "voluntaryAgreementFlag": "",
+                  "inAdministrationFlag": "",
+                  "receiveManagerFlag": "",
+                  "latestAnnualReturnDate": "18/06/2020",
+                  "nextAnnualReturnDate": null,
+                  "accountsFilingDate": "27/06/2020",
+                  "latestDateOfAccounts": "29/02/2020",
+                  "accountsDueDate": "26/08/2021",
+                  "accountsMadeUpDate": "29/02/2020",
+                  "accountsReferenceDate": "2602",
+                  "charityNumber": "",
+                  "ftsea": "ftse100",
+                  "ftset": "Not FTSET",
+                  "primarySicCode07": {
+                    "code": "47110",
+                    "description": "retail sale in non-specialised stores with food, beverages or tobacco predominating"
+                  },
+                  "primarySicCode03": {
+                    "code": "5211",
+                    "description": "retail in non-specialised stores holding an alcohol licence, with food, beverages or tobacco predominating, not elsewhere classified"
+                  },
+                  "accountsType": "group",
+                  "companyType": "public limited with share capital",
+                  "Industries": {
+                    "SicText_1": "retail sale in non-specialised stores with food, beverages or tobacco predominating",
+                    "SicIndustry_1": "wholesale and retail trade; repair of motor vehicles and motorcycles"
+                  },
+                  "pin": {
+                    "companyLocation": {
+                      "lat": 51.809974,
+                      "lon": -0.196346
+                    }
+                  },
+                  "RegAddress_Modified": {
+                    "addressLine1": "tesco house shire park",
+                    "addressLine2": "kestrel way",
+                    "addressLine3": "welwyn garden city",
+                    "addressLine4": "",
+                    "postalCode": "al71ga",
+                    "telephone": "",
+                    "ctps": "n",
+                    "website": "tescoplc.com",
+                    "regPobox": "",
+                    "regCareOfAddress": "",
+                    "regOfficeAreaCode": "al 7",
+                    "country": "england",
+                    "local_authority_name": "welwyn hatfield",
+                    "ward_name": "haldens",
+                    "region": "east of england",
+                    "parliament_constituency_name": "welwyn hatfield",
+                    "european_electoral_region_name": "eastern",
+                    "primary_trust_name": "hertfordshire",
+                    "district_code": "al7",
+                    "county": "hertfordshire"
+                  },
+                  "financialRatios": [
+                    {
+                      "yearStartDate": "01/03/2014",
+                      "yearEndDate": "28/02/2015",
+                      "preTaxProfitPercentage": "-10.24",
+                      "currentRatio": ".6",
+                      "salesPerNetworkingCapital": "-7.93",
+                      "gearingPercentage": "273.5",
+                      "equityInPercentage": "17.5",
+                      "creditorDays": "29.66",
+                      "debtorDays": "1.06",
+                      "liquidityPerAcidTest": ".45",
+                      "returnOnCapitalEmployedPercentage": "-26.12",
+                      "returnOnTotalAssetsEmployedPercentage": "-14.42",
+                      "currentDebtRatio": "2.8",
+                      "totalDebtRatio": "5.25",
+                      "stockTurnoverRatio": "4.74",
+                      "returnNetAssetsEmployedPercentage": "-90.17",
+                      "startYear": "2014",
+                      "startMonth": "03",
+                      "startDate": "01",
+                      "endYear": "2015",
+                      "endMonth": "02",
+                      "endDate": "28"
+                    }
+                  ],
+                  "simplifiedAccounts": [
+                    {
+                      "yearStartDate": "01/03/2014",
+                      "yearEndDate": "28/02/2015",
+                      "numberOfMonths": "12",
+                      "currency": "gbp",
+                      "consolidatedAccount": "y",
+                      "turnover": 62284000000,
+                      "profitBeforeTax": -6376000000,
+                      "profitAfterTax": -5719000000,
+                      "cashInBank": 2165000000,
+                      "totalCurrentAssets": 11958000000,
+                      "totalAssets": 44214000000,
+                      "totalCurrentLiabilities": 19810000000,
+                      "totalLiabilities": 37143000000,
+                      "totalShareholdersEquity": 7071000000,
+                      "netWorth": 3300000000,
+                      "numberOfEmplyees": 506984,
+                      "auditors": "pricewaterhousecoopers llp",
+                      "accountantName": "",
+                      "startYear": "2014",
+                      "startMonth": "03",
+                      "startDate": "01",
+                      "endYear": "2015",
+                      "endMonth": "02",
+                      "endDate": "28",
+                      "accountsFiled": "ifrs"
+                    }
+                  ],
+                  "statutoryAccounts": [
+                    {
+                      "id": "5eb14824ccc1e2612693523b",
+                      "companyRegistrationNumber": "00445790",
+                      "yearStartDate": "01/03/2014",
+                      "yearEndDate": "28/02/2015",
+                      "numberOfWeeks": "52",
+                      "numberOfMonths": "12",
+                      "currency": "gbp",
+                      "consolidatedAccount": "y",
+                      "turnover": 62284000000,
+                      "export": null,
+                      "costOfSales": 64396000000,
+                      "grossProfit": -2112000000,
+                      "wagesAndSalaries": 8269000000,
+                      "directorsRemuneration": 7530000,
+                      "operatingProfit": -5792000000,
+                      "depreciation": 1293000000,
+                      "auditFees": 5400000,
+                      "interestExpense": 661000000,
+                      "profitBeforeTax": -6376000000,
+                      "taxation": 657000000,
+                      "profitAfterTax": -5719000000,
+                      "dividends": 914000000,
+                      "retainedProfit": -6658000000,
+                      "tangibleAssets": 28485000000,
+                      "intangibleAssets": 3771000000,
+                      "totalFixedAssets": 32256000000,
+                      "totalCurrentAssets": 11958000000,
+                      "tradeDebtors": 183000000,
+                      "stock": 2957000000,
+                      "cash": 2165000000,
+                      "otherCurrentAssets": 1938000000,
+                      "increaseInCash": -717000000,
+                      "miscCurrentAssets": 4715000000,
+                      "totalAssets": 44214000000,
+                      "totalCurrentLiabilities": 19810000000,
+                      "tradeCreditors": 5076000000,
+                      "bankBorrowingsCurrent": 2008000000,
+                      "otherShortTermFinance": 89000000,
+                      "miscCurrentLiabilities": 12637000000,
+                      "otherLongTermFinance": 0,
+                      "totalLongTermLiabilities": 17333000000,
+                      "bankOverdraftAndLTL": 19341000000,
+                      "totalLiabilities": 37143000000,
+                      "netAssets": 7071000000,
+                      "workingCapital": -7852000000,
+                      "issuedShareCapital": 406000000,
+                      "revenueReserves": 1985000000,
+                      "otherReserves": 4680000000,
+                      "revaluationReserve": 0,
+                      "totalShareholdersEquity": 7071000000,
+                      "netWorth": 3300000000,
+                      "netCashFlowFromOperations": 484000000,
+                      "netCashFlowBeforeFinancing": -1531000000,
+                      "netCashFlowFromFinancing": 814000000,
+                      "contingentLiabilities": null,
+                      "capitalEmployed": 24404000000,
+                      "numberOfEmployees": 506984,
+                      "accountStatus": "analysed",
+                      "accountType": "ifrs"
+                    }
+                  ],
+                  "mortgagesObj": [
+                    {
+                      "mortgageNumber": 8,
+                      "regDate": "06/11/2009",
+                      "createdDate": "04/11/2009",
+                      "satisfiedDate": null,
+                      "lastChangeDate": "07/05/2019",
+                      "memorandumNature": "",
+                      "chargeCode": "004457900008",
+                      "mortgageDetails": [
+                        {
+                          "mortgageNumber": 8,
+                          "recordId": "15",
+                          "recordType": "mortgage type",
+                          "seqNumber": 1,
+                          "description": "account security agreement",
+                          "chargeCode": "004457900008"
+                        },
+                        {
+                          "mortgageNumber": 8,
+                          "recordId": "40",
+                          "recordType": "persons entitled",
+                          "seqNumber": 1,
+                          "description": "tesco ireland pension trustees limited as trustee of the tesco ireland limited pension plan ;",
+                          "chargeCode": "004457900008"
+                        },
+                        {
+                          "mortgageNumber": 8,
+                          "recordId": "25",
+                          "recordType": "amount secured",
+                          "seqNumber": 1,
+                          "description": "all sums due or to become due under theterms of the aforementioned instrument creating or evidencing the charge",
+                          "chargeCode": "004457900008"
+                        },
+                        {
+                          "mortgageNumber": 8,
+                          "recordId": "35",
+                          "recordType": "mortgage detail",
+                          "seqNumber": 1,
+                          "description": "right title benefit and interest in andto the account being the euro designated account in the name of the company with sort code 40-05-15 account number 67851125, and the deposit. see image for full details",
+                          "chargeCode": "004457900008"
+                        }
+                      ]
+                    }
+                  ],
+                  "getGroupStructure": [
+                    {
+                      "id": "5f5262f41541db3086474c43",
+                      "ultimateParentCompanyRegistrationNumber": "00445790",
+                      "parentCompanyRegistrationNumber": "00445790",
+                      "companyRegistrationNumber": "00299400",
+                      "businessName": "stewarts supermarkets limited",
+                      "country": null,
+                      "companyLevelGroup": 1,
+                      "holdingType": "wholly owned by",
+                      "ultimateParentBusinessName": "tesco plc",
+                      "parentBusinessName": "tesco plc"
+                    },
+                    {
+                      "id": "5f5262f41541db3086474c6a",
+                      "ultimateParentCompanyRegistrationNumber": "00445790",
+                      "parentCompanyRegistrationNumber": "04340809",
+                      "companyRegistrationNumber": "00065519",
+                      "businessName": "giant booker limited",
+                      "country": null,
+                      "companyLevelGroup": 7,
+                      "holdingType": "wholly owned by",
+                      "ultimateParentBusinessName": "tesco plc",
+                      "parentBusinessName": "bf limited"
+                    }
+                  ],
+                  "ccjDetails": [
+                    {
+                      "id": "5eb18f2a7a3ffdcf264138ad",
+                      "companyRegistrationNumber": "00445790",
+                      "caseNumber": "g3at671v",
+                      "ccjDate": "25/03/2020",
+                      "ccjAmount": 9139,
+                      "court": "county court business centre",
+                      "ccjPaidDate": null,
+                      "splitFlag": null,
+                      "businessName": "tesco plc",
+                      "incomingRecordDetails": "tesco plc, tesco house, shire park, kestrel way, al7 1ga, al7 1ga",
+                      "plantiffName": null,
+                      "plantiffForeName": null,
+                      "plantiffSurName": null,
+                      "plantiffAddressLine1": null,
+                      "plantiffAddressLine2": null,
+                      "plantiffAddressLine3": null,
+                      "plantiffAddressLine4": null,
+                      "plantiffAddressLine5": null,
+                      "plantiffPostCode": null,
+                      "plantiffTelephone": null,
+                      "manualUpdateFlag": null,
+                      "amendFlag": null,
+                      "ccjStatus": "new judgment",
+                      "type": "ccj"
+                    },
+                    {
+                      "id": "5eb18f2a7a3ffdcf264138ac",
+                      "companyRegistrationNumber": "00445790",
+                      "caseNumber": "f45yy177",
+                      "ccjDate": "03/03/2020",
+                      "ccjAmount": 1291,
+                      "court": "county court money claims centre",
+                      "ccjPaidDate": null,
+                      "splitFlag": null,
+                      "businessName": "tesco plc",
+                      "incomingRecordDetails": "tesco plc, tesco house, shire park, kestrel way, al7 1ga, al7 1ga",
+                      "plantiffName": null,
+                      "plantiffForeName": null,
+                      "plantiffSurName": null,
+                      "plantiffAddressLine1": null,
+                      "plantiffAddressLine2": null,
+                      "plantiffAddressLine3": null,
+                      "plantiffAddressLine4": null,
+                      "plantiffAddressLine5": null,
+                      "plantiffPostCode": null,
+                      "plantiffTelephone": null,
+                      "manualUpdateFlag": null,
+                      "amendFlag": null,
+                      "ccjStatus": "new judgment",
+                      "type": "ccj"
+                    }
+                  ],
+                  "companyCommentary": [
+                    {
+                      "id": "5eb1907f190d6dfbae86dfa0",
+                      "companyRegistrationNumber": "00445790",
+                      "commentaryCode": "39",
+                      "dateLogged": "06/12/2019",
+                      "commentaryText": "the latest accounts show a large increase in equity in comparison to the previous year.",
+                      "commentaryPriority": "10",
+                      "commentaryImpact": "+"
+                    }
+                  ]
+                } 
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getActiveDirectorsByCompany/{companyRegistrationNumber}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Active Directors of a Company",
+        "description": "",
+        "operationId": "activeDirectors",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+              "application/json":{
+                "status": 200,
+                "message": "Success",
+                "results": {
+                  "directorsData": [
+                    {
+                      "directorTitle": "mr",
+                      "postalTitle": "mr j.m. allan",
+                      "fromDate": "01/03/2015",
+                      "toDate": null,
+                      "directorRole": "director",
+                      "directorQualifications": "",
+                      "directorJobRole": "chairman",
+                      "directorOccupation": "",
+                      "addressId": "13875878",
+                      "serviceAddressFlag": "y",
+                      "appointmentDate": 1,
+                      "resignationDate": 0,
+                      "directorNumberAddressLevel": 4,
+                      "changeUpdatedInCompanyHouse": "20/03/2019",
+                      "changeRegisteredSubmittedDate": null,
+                      "appointment": "current appointment",
+                      "position": "director",
+                      "detailedInformation": {
+                        "initials": "jm",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "john",
+                        "middlename": "murray",
+                        "surname": "allan",
+                        "addressLine1": "100 victoria embankment",
+                        "addressLine2": "",
+                        "addressLine3": "london",
+                        "addressLine4": "",
+                        "addressLine5": "",
+                        "postalCode": "ec4y 0hq",
+                        "country": "united kingdom",
+                        "birthdDate": "20/08/1948",
+                        "fullBirthDateFlag": "y",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "england",
+                        "directorNumberAddressLevel": 4,
+                        "changeUpdatedInCompanyHouse": "20/03/2019",
+                        "changeRegisteredSubmittedDate": null,
+                        "fullname": "john murray allan ",
+                        "nationality": "british",
+                        "nationalityName": "u.kingdom"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "tesco house, shire park",
+                        "addressLine2": "kestrel way",
+                        "addressLine3": "welwyn garden city",
+                        "addressLine4": "",
+                        "addressLine5": "united kingdom",
+                        "postalCode": "al7 1ga",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getAllDirectorsByCompany/{companyRegistrationNumber}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "All Directors of a Company",
+        "description": "",
+        "operationId": "allDirectors",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+              "application/json":{
+                "status": 200,
+                "message": "Success",
+                "results": {
+                  "directorsData": [
+                    {
+                      "directorTitle": "ms",
+                      "postalTitle": "ms l.j. neville-rolfe",
+                      "fromDate": "15/03/2004",
+                      "toDate": "14/12/2006",
+                      "directorRole": "company secretary",
+                      "directorQualifications": "",
+                      "directorJobRole": "company director",
+                      "directorOccupation": "",
+                      "addressId": "78638",
+                      "serviceAddressFlag": "y",
+                      "appointmentDate": 1,
+                      "resignationDate": 1,
+                      "directorNumberAddressLevel": 1,
+                      "changeUpdatedInCompanyHouse": "05/01/2011",
+                      "changeRegisteredSubmittedDate": "05/01/2011",
+                      "appointment": "previous appointment",
+                      "position": "secretary",
+                      "detailedInformation": {
+                        "initials": "lj",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "lucy",
+                        "middlename": "jeanne",
+                        "surname": "neville-rolfe",
+                        "addressLine1": "new tesco house",
+                        "addressLine2": "delamare road",
+                        "addressLine3": "cheshunt",
+                        "addressLine4": "hertfordshire",
+                        "addressLine5": "",
+                        "postalCode": "en8 9sl",
+                        "country": "",
+                        "birthdDate": "02/01/1953",
+                        "fullBirthDateFlag": "y",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "",
+                        "directorNumberAddressLevel": 1,
+                        "changeUpdatedInCompanyHouse": "15/08/2013",
+                        "changeRegisteredSubmittedDate": null,
+                        "fullname": "lucy jeanne neville-rolfe ",
+                        "nationality": "british",
+                        "nationalityName": "u.kingdom"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "new tesco house",
+                        "addressLine2": "delamare road",
+                        "addressLine3": "cheshunt",
+                        "addressLine4": "hertfordshire",
+                        "addressLine5": "",
+                        "postalCode": "en8 9sl",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      }
+                    },
+                    {
+                      "directorTitle": "mr",
+                      "postalTitle": "mr j.m. allan",
+                      "fromDate": "01/03/2015",
+                      "toDate": null,
+                      "directorRole": "director",
+                      "directorQualifications": "",
+                      "directorJobRole": "chairman",
+                      "directorOccupation": "",
+                      "addressId": "13875878",
+                      "serviceAddressFlag": "y",
+                      "appointmentDate": 1,
+                      "resignationDate": 0,
+                      "directorNumberAddressLevel": 4,
+                      "changeUpdatedInCompanyHouse": "20/03/2019",
+                      "changeRegisteredSubmittedDate": null,
+                      "appointment": "current appointment",
+                      "position": "director",
+                      "detailedInformation": {
+                        "initials": "jm",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "john",
+                        "middlename": "murray",
+                        "surname": "allan",
+                        "addressLine1": "100 victoria embankment",
+                        "addressLine2": "",
+                        "addressLine3": "london",
+                        "addressLine4": "",
+                        "addressLine5": "",
+                        "postalCode": "ec4y 0hq",
+                        "country": "united kingdom",
+                        "birthdDate": "20/08/1948",
+                        "fullBirthDateFlag": "y",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "england",
+                        "directorNumberAddressLevel": 4,
+                        "changeUpdatedInCompanyHouse": "20/03/2019",
+                        "changeRegisteredSubmittedDate": null,
+                        "fullname": "john murray allan ",
+                        "nationality": "british",
+                        "nationalityName": "u.kingdom"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "tesco house, shire park",
+                        "addressLine2": "kestrel way",
+                        "addressLine3": "welwyn garden city",
+                        "addressLine4": "",
+                        "addressLine5": "united kingdom",
+                        "postalCode": "al7 1ga",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      }
+                    }
+                  ]
+                }   
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getAllOfficersByCompany/{companyRegistrationNumber}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "All Officers of a Company (Directors, PSCs, Shareholders)",
+        "description": "",
+        "operationId": "allOfficers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+              "application/json":{
+                "status": 200,
+                "message": "Success",
+                "results": {
+                  "directorsData": [
+                    {
+                      "directorTitle": "ms",
+                      "postalTitle": "ms l.j. neville-rolfe",
+                      "fromDate": "15/03/2004",
+                      "toDate": "14/12/2006",
+                      "directorRole": "company secretary",
+                      "directorQualifications": "",
+                      "directorJobRole": "company director",
+                      "directorOccupation": "",
+                      "addressId": "78638",
+                      "serviceAddressFlag": "y",
+                      "appointmentDate": 1,
+                      "resignationDate": 1,
+                      "directorNumberAddressLevel": 1,
+                      "changeUpdatedInCompanyHouse": "05/01/2011",
+                      "changeRegisteredSubmittedDate": "05/01/2011",
+                      "appointment": "previous appointment",
+                      "position": "secretary",
+                      "detailedInformation": {
+                        "initials": "lj",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "lucy",
+                        "middlename": "jeanne",
+                        "surname": "neville-rolfe",
+                        "addressLine1": "new tesco house",
+                        "addressLine2": "delamare road",
+                        "addressLine3": "cheshunt",
+                        "addressLine4": "hertfordshire",
+                        "addressLine5": "",
+                        "postalCode": "en8 9sl",
+                        "country": "",
+                        "birthdDate": "02/01/1953",
+                        "fullBirthDateFlag": "y",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "",
+                        "directorNumberAddressLevel": 1,
+                        "changeUpdatedInCompanyHouse": "15/08/2013",
+                        "changeRegisteredSubmittedDate": null,
+                        "fullname": "lucy jeanne neville-rolfe ",
+                        "nationality": "british",
+                        "nationalityName": "u.kingdom"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "new tesco house",
+                        "addressLine2": "delamare road",
+                        "addressLine3": "cheshunt",
+                        "addressLine4": "hertfordshire",
+                        "addressLine5": "",
+                        "postalCode": "en8 9sl",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      }
+                    }
+                  ],
+                  "shareDetails": [
+                    {
+                      "id": "5ef863541feafd873e0c3d1b",
+                      "shareholderPNRNumber": "71258971",
+                      "companyRegistrationNumber": "00445790",
+                      "numberOfSharesIssued": 8174160481,
+                      "shareType": "ordinary",
+                      "shareClasses": "",
+                      "value": 0.05,
+                      "currency": "gbp",
+                      "share_holders_details": {
+                        "id": "5ef862793bce019755d2baef",
+                        "shareholderTitle": "",
+                        "shareholderForename": "",
+                        "shareholderSurname": "undisclosed",
+                        "shareholderAddress1": "",
+                        "shareholderAddress2": "",
+                        "shareholderAddress3": "",
+                        "shareholderAddress4": "",
+                        "shareholderAddress5": "",
+                        "shareholderPostcode": ""
+                      },
+                      "totalShareCount": 408708024.05,
+                      "total_shares": 8174160481,
+                      "percentage_share": "100.00"
+                    }
+                  ]
+                }                
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getRelatedCompaniesAndDirectorsByCompany/{companyRegistrationNumber}/{page}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Related Companies And Directors",
+        "description": "",
+        "operationId": "relatedCompaniesAndDirectors",
+        
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "path",
+            "name": "page",
+            "description": "Page Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/page"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "application/json": {
+                "result": {
+                  "relatedCompanies": [
+                    {
+                      "companyNumber": "10202297",
+                      "companyName": "lead gen solutions limited",
+                      "incorporationDate": "26/05/2016",
+                      "address": {
+                        "addressLine1": "2 old bath road",
+                        "addressLine2": "newbury",
+                        "addressLine3": "berkshire",
+                        "addressLine4": "",
+                        "postalCode": "rg141ql",
+                        "telephone": "01635226900",
+                        "ctps": "n",
+                        "website": "",
+                        "regPobox": "",
+                        "regCareOfAddress": "",
+                        "regOfficeAreaCode": "rg14",
+                        "country": "england",
+                        "local_authority_name": "west berkshire",
+                        "ward_name": "newbury speen",
+                        "region": "south east",
+                        "parliament_constituency_name": "newbury",
+                        "european_electoral_region_name": "south east",
+                        "primary_trust_name": "berkshire west",
+                        "district_code": "rg14",
+                        "county": "england (ua/md/lb)"
+                      },
+                      "category": "private limited with share capital",
+                      "sic_code": {
+                        "SicNumber_1": "70229",
+                        "SicText_1": "management consultancy activities other than financial management"
+                      },
+                      "companyStatus": "live",
+                      "chargesCount": 0,
+                      "totalDirectors": 2,
+                      "linkedDirector": "Robert Peter Holland",
+                      "appointedOn": "26/05/2016"
+                    },
+                    {
+                      "companyNumber": "09718853",
+                      "companyName": "whitehall finance limited",
+                      "incorporationDate": "05/08/2015",
+                      "address": {
+                        "addressLine1": "1210 arlington business park",
+                        "addressLine2": "theale",
+                        "addressLine3": "reading",
+                        "addressLine4": "",
+                        "postalCode": "rg74ty",
+                        "telephone": "(0203) 369 0098",
+                        "ctps": "n",
+                        "website": "whitehallfinance.com",
+                        "regPobox": "",
+                        "regCareOfAddress": "",
+                        "regOfficeAreaCode": "rg 7",
+                        "country": "england",
+                        "local_authority_name": "west berkshire",
+                        "ward_name": "theale",
+                        "region": "south east",
+                        "parliament_constituency_name": "reading west",
+                        "european_electoral_region_name": "south east",
+                        "primary_trust_name": "berkshire west",
+                        "district_code": "rg7",
+                        "county": "england (ua/md/lb)"
+                      },
+                      "category": "private limited with share capital",
+                      "sic_code": {
+                        "SicNumber_1": "64999",
+                        "SicText_1": "financial intermediation not elsewhere classified"
+                      },
+                      "companyStatus": "live",
+                      "chargesCount": 0,
+                      "totalDirectors": 8,
+                      "linkedDirector": "Robert Peter Holland",
+                      "appointedOn": "21/05/2017"
+                    }
+                  ],
+                  "relatedDirectors": [
+                    {
+                      "directorName": "mrs l.j. holland",
+                      "director": 923628850,
+                      "companyName": "lead gen solutions limited",
+                      "companyNumber": "10202297",
+                      "role": "director",
+                      "country": "england",
+                      "appointmentDate": "01/08/2017",
+                      "detailedInformation": {
+                        "initials": "lj",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "laura",
+                        "middlename": "jane",
+                        "surname": "holland",
+                        "addressLine1": "2 old bath road",
+                        "addressLine2": "",
+                        "addressLine3": "newbury",
+                        "addressLine4": "berkshire",
+                        "addressLine5": "",
+                        "postalCode": "rg14 1ql",
+                        "country": "england",
+                        "birthdDate": "01/07/1987",
+                        "fullBirthDateFlag": "n",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "england",
+                        "directorNumberAddressLevel": 2,
+                        "changeUpdatedInCompanyHouse": "07/06/2018",
+                        "changeRegisteredSubmittedDate": "07/06/2018",
+                        "fullname": "laura jane holland ",
+                        "nationality": "british",
+                        "nationalityName": "u.kingdom"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "2 old bath road",
+                        "addressLine2": "",
+                        "addressLine3": "newbury",
+                        "addressLine4": "berkshire",
+                        "addressLine5": "england",
+                        "postalCode": "rg14 1ql",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      },
+                      "linkedDirector": "Robert Peter Holland",
+                      "appointedOn": "26/05/2016"
+                    },
+                    {
+                      "directorName": "mr a.m. de negri",
+                      "director": 922350614,
+                      "companyName": "whitehall finance limited",
+                      "companyNumber": "09718853",
+                      "role": "director",
+                      "country": "united kingdom",
+                      "appointmentDate": "29/07/2019",
+                      "detailedInformation": {
+                        "initials": "am",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "antonio",
+                        "middlename": "maria",
+                        "surname": "de negri",
+                        "addressLine1": "apartment 1807 71 alie street",
+                        "addressLine2": "",
+                        "addressLine3": "london",
+                        "addressLine4": "",
+                        "addressLine5": "",
+                        "postalCode": "e1 8ng",
+                        "country": "united kingdom",
+                        "birthdDate": "01/09/1984",
+                        "fullBirthDateFlag": "n",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "england",
+                        "directorNumberAddressLevel": 1,
+                        "changeUpdatedInCompanyHouse": "09/08/2019",
+                        "changeRegisteredSubmittedDate": null,
+                        "fullname": "antonio maria de negri ",
+                        "nationality": "italian",
+                        "nationalityName": "italy"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "1210 arlington business park",
+                        "addressLine2": "theale",
+                        "addressLine3": "reading",
+                        "addressLine4": "",
+                        "addressLine5": "england",
+                        "postalCode": "rg7 4ty",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      },
+                      "linkedDirector": "Robert Peter Holland",
+                      "appointedOn": "21/05/2017"
+                    }
+                  ]
+                },
+                "status": 200
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getDirectorDetailsDataById/{DirectorId}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Director Details Data",
+        "description": "",
+        "operationId": "getDirectorDetailsData",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "DirectorId",
+            "description": "Director ID",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DirectorId"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+              "application/json":{
+                "status": 200,
+                "message": "Success",
+                "results": [
+                  {
+                    "CompanyOriginalName": "exlray limited",
+                    "CompanyNumber": "08264428",
+                    "RegAddress": {
+                      "addressLine1": "11 bill luffman way",
+                      "addressLine2": "eastleigh",
+                      "addressLine3": "",
+                      "addressLine4": "",
+                      "postalCode": "so505rz",
+                      "telephone": "",
+                      "ctps": "n",
+                      "website": "",
+                      "regPobox": "",
+                      "regCareOfAddress": "",
+                      "regOfficeAreaCode": "so50",
+                      "country": "england",
+                      "local_authority_name": "eastleigh",
+                      "ward_name": "eastleigh central",
+                      "region": "south east",
+                      "parliament_constituency_name": "eastleigh",
+                      "european_electoral_region_name": "south east",
+                      "primary_trust_name": "hampshire",
+                      "district_code": "so50",
+                      "county": "hampshire"
+                    },
+                    "CompanyCategory": "private limited with share capital",
+                    "CompanyStatus": "dissolved",
+                    "IncorporationDate": "23/10/2012",
+                    "Sic_Code_07": {
+                      "SicNumber_1": "62020",
+                      "SicText_1": "information technology consultancy activities"
+                    },
+                    "Sic_Code_03": {
+                      "SicNumber_1": "7210",
+                      "SicText_1": "hardware consultancy"
+                    },
+                    "hasLandCorporate": false,
+                    "hasAcquiredCompany": false,
+                    "hasAcquiringCompany": false,
+                    "hascontactInfo": true,
+                    "hasContactNumber": false,
+                    "hasGroupStructure": false,
+                    "hasSafeAlerts": false,
+                    "hasTradingAddress": true,
+                    "hasFinances": true,
+                    "hasWebsite": false,
+                    "total_directors_count": 5,
+                    "latestAnnualReturnDate": "23/10/2015",
+                    "nextAnnualReturnDate": null,
+                    "accountsFilingDate": "22/07/2015",
+                    "latestDateOfAccounts": "31/10/2014",
+                    "accountsDueDate": "31/07/2016",
+                    "accountsMadeUpDate": "31/10/2014",
+                    "accountsReferenceDate": "3110",
+                    "accountsType": "total exemption small",
+                    "hasCCJInfo": false,
+                    "shareHoldersCount": 5,
+                    "hasShareHolders": true,
+                    "hasCharges": false,
+                    "total_count": 0,
+                    "part_satisfied_count": 0,
+                    "satisfied_count": 0,
+                    "hasCompanyCommentary": false,
+                    "directorData": {
+                      "directorTitle": "mr",
+                      "postalTitle": "mr t. kumar",
+                      "fromDate": "23/10/2012",
+                      "toDate": null,
+                      "directorRole": "director",
+                      "directorQualifications": "",
+                      "directorJobRole": "software consultant",
+                      "directorOccupation": "",
+                      "addressId": "13303895",
+                      "serviceAddressFlag": "y",
+                      "appointmentDate": 3,
+                      "resignationDate": 0,
+                      "directorNumberAddressLevel": 3,
+                      "changeUpdatedInCompanyHouse": "06/11/2015",
+                      "changeRegisteredSubmittedDate": "06/11/2015",
+                      "appointment": "current appointment",
+                      "position": "director",
+                      "detailedInformation": {
+                        "initials": "t",
+                        "suffix": "",
+                        "honors": "",
+                        "forename": "tarun",
+                        "middlename": "",
+                        "surname": "kumar",
+                        "addressLine1": "39 george raymond road",
+                        "addressLine2": "",
+                        "addressLine3": "eastleigh",
+                        "addressLine4": "",
+                        "addressLine5": "",
+                        "postalCode": "so50 5sz",
+                        "country": "england",
+                        "birthdDate": "11/04/1982",
+                        "fullBirthDateFlag": "y",
+                        "serviceAddressFlag": "",
+                        "nonMailMarker": "",
+                        "usualResidentialCountry": "england",
+                        "directorNumberAddressLevel": 3,
+                        "changeUpdatedInCompanyHouse": "16/04/2020",
+                        "changeRegisteredSubmittedDate": null,
+                        "fullname": "tarun kumar ",
+                        "nationality": "british",
+                        "nationalityName": "u.kingdom"
+                      },
+                      "serviceAddress": {
+                        "addressLine1": "39, george raymond road",
+                        "addressLine2": "",
+                        "addressLine3": "eastleigh",
+                        "addressLine4": "hampshire",
+                        "addressLine5": "england",
+                        "postalCode": "so50 5sz",
+                        "regCareOfAddress": "",
+                        "regPobox": ""
+                      }
+                    },
+                    "resigned_directors_count": 4,
+                    "active_directors_count": 1,
+                    "financeData": [
+                      {
+                        "yearStartDate": "01/11/2013",
+                        "yearEndDate": "31/10/2014",
+                        "numberOfMonths": "12",
+                        "currency": "gbp",
+                        "consolidatedAccount": "n",
+                        "turnover": null,
+                        "profitBeforeTax": null,
+                        "profitAfterTax": null,
+                        "cashInBank": 1255,
+                        "totalCurrentAssets": 1255,
+                        "totalAssets": 2516,
+                        "totalCurrentLiabilities": 8765,
+                        "totalLiabilities": 8765,
+                        "totalShareholdersEquity": -6249,
+                        "netWorth": -6249,
+                        "numberOfEmplyees": null,
+                        "auditors": "",
+                        "accountantName": "",
+                        "startYear": "2013",
+                        "startMonth": "11",
+                        "startDate": "01",
+                        "endYear": "2014",
+                        "endMonth": "10",
+                        "endDate": "31",
+                        "accountsFiled": "ukgaap"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getCompanyShareHoldingsByCompany/{companyRegistrationNumber}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Company Share Hodling Data",
+        "description": "",
+        "operationId": "getCompanyShareHoldings",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "companyRegistrationNumber",
+            "description": "Company Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompanyNumber"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            },
+            "examples":{
+              "application/json":{
+                "status": 200,
+                "message": "Success",
+                "results": {
+                  "companyRegistrationDate": "27/11/1947",
+                  "sicCode07": {
+                    "SicNumber_1": "47110",
+                    "SicText_1": "retail sale in non-specialised stores with food, beverages or tobacco predominating"
+                  },
+                  "companyRegistrationNumber": "00445790",
+                  "companyType": "public limited with share capital",
+                  "businessName": "tesco plc",
+                  "companyStatus": "live",
+                  "RegAddress_Modified": {
+                    "regPobox": "",
+                    "country": "england",
+                    "website": "tescoplc.com",
+                    "parliament_constituency_name": "welwyn hatfield",
+                    "local_authority_name": "welwyn hatfield",
+                    "european_electoral_region_name": "eastern",
+                    "postalCode": "al71ga",
+                    "county": "hertfordshire",
+                    "primary_trust_name": "hertfordshire",
+                    "telephone": "",
+                    "regCareOfAddress": "",
+                    "ward_name": "haldens",
+                    "district_code": "al7",
+                    "regOfficeAreaCode": "al 7",
+                    "addressLine1": "tesco house shire park",
+                    "addressLine2": "kestrel way",
+                    "ctps": "n",
+                    "addressLine3": "welwyn garden city",
+                    "addressLine4": "",
+                    "region": "east of england"
+                  },
+                  "shareholdings": [
+                    {
+                      "id": "5eb1b5a80e1ea02112f4f4a6",
+                      "shareholderPNRNumber": "68323316",
+                      "companyRegistrationNumber": "00642321",
+                      "numberOfSharesIssued": 43750,
+                      "shareType": "ordinary",
+                      "shareClasses": "",
+                      "value": 1,
+                      "currency": "gbp",
+                      "share_holders_details": {
+                        "id": "5eb1b6db3d7ed827578fd1a6",
+                        "shareholderTitle": "",
+                        "shareholderForename": "",
+                        "shareholderSurname": "tesco plc",
+                        "shareholderAddress1": "",
+                        "shareholderAddress2": "",
+                        "shareholderAddress3": "",
+                        "shareholderAddress4": "",
+                        "shareholderAddress5": "",
+                        "shareholderPostcode": ""
+                      },
+                      "share_holder_reg": "00445790",
+                      "companyInformation": {
+                        "companyRegistrationDate": "18/11/1959",
+                        "sicCode07": {
+                          "SicNumber_1": "74990",
+                          "SicText_1": "non-trading company"
+                        },
+                        "companyRegistrationNumber": "00642321",
+                        "companyType": "private limited with share capital",
+                        "businessName": "adsega limited",
+                        "companyStatus": "dissolved",
+                        "RegAddress_Modified": {
+                          "regPobox": "",
+                          "country": "england",
+                          "website": "",
+                          "parliament_constituency_name": "welwyn hatfield",
+                          "local_authority_name": "welwyn hatfield",
+                          "european_electoral_region_name": "eastern",
+                          "postalCode": "al71ga",
+                          "county": "hertfordshire",
+                          "primary_trust_name": "hertfordshire",
+                          "telephone": "",
+                          "regCareOfAddress": "",
+                          "ward_name": "haldens",
+                          "district_code": "al7",
+                          "regOfficeAreaCode": "al 7",
+                          "addressLine1": "tesco house shire park",
+                          "addressLine2": "kestrel way",
+                          "ctps": "n",
+                          "addressLine3": "welwyn garden city",
+                          "addressLine4": "",
+                          "region": "east of england"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "/getUserMeetMeRelations": {
+        "get": {
+          "tags": [
+            "Company"
+          ],
+          "summary": "User Meet Me Relations",
+          "description": "",
+          "operationId": "getUserMeetMeRelations",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Authorization Token",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Token"
+              }
+            }
+          ],
+          "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+            "405": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      }
+    },
+    "/getUserMeetMeRelations": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "User Meet Me Relations",
+        "description": "",
+        "operationId": "getUserMeetMeRelations",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization Token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        ],
+        "responses": {
+        "200": {
+          "description": "Successful Operation",
+          "schema": {
+            "type": "string"
+          },
+          "examples":{
+            "application/json":{
+              "status": 200,
+              "results": [
+                {
+                  "_id": "5f6de32da5bcb67edaef442c",
+                  "created": "2020-09-25T12:31:41.603Z",
+                  "userId": "5ae6e577b37318328c601208",
+                  "sourceCompanyName": "bizopus technologies ltd",
+                  "destinationCompanyName": "lead gen solutions limited",
+                  "destinationCompanyNumber": "10202297",
+                  "sourceCompanyNumber": "07847369",
+                  "option": "d",
+                  "sourceDirectorName": "Preeti Sharma (Company Secretary)",
+                  "destinationDirectorName": "Laura Jane Holland (Director)",
+                  "__v": 0,
+                  "relation": [
+                    {
+                      "data": [
+                        {
+                          "data": "921081345",
+                          "expandedIcon": "ui-icon-person",
+                          "collapsedIcon": "ui-icon-person",
+                          "label": "Preeti Sharma (Company Secretary)",
+                          "children": [
+                            {
+                              "data": "07847369",
+                              "expandedIcon": "ui-icon-business",
+                              "collapsedIcon": "ui-icon-business",
+                              "label": "bizopus technologies ltd",
+                              "children": [
+                                {
+                                  "data": "916456818",
+                                  "expandedIcon": "ui-icon-person",
+                                  "collapsedIcon": "ui-icon-person",
+                                  "label": "yogender  sharma",
+                                  "children": [
+                                    {
+                                      "data": "08264428",
+                                      "expandedIcon": "ui-icon-business",
+                                      "collapsedIcon": "ui-icon-business",
+                                      "label": "exlray limited",
+                                      "children": [
+                                        {
+                                          "data": "913441374",
+                                          "expandedIcon": "ui-icon-person",
+                                          "collapsedIcon": "ui-icon-person",
+                                          "label": "tarun  kumar",
+                                          "children": [
+                                            {
+                                              "data": "10831906",
+                                              "expandedIcon": "ui-icon-business",
+                                              "collapsedIcon": "ui-icon-business",
+                                              "label": "data gardener limited",
+                                              "children": [
+                                                {
+                                                  "data": "920855853",
+                                                  "expandedIcon": "ui-icon-person",
+                                                  "collapsedIcon": "ui-icon-person",
+                                                  "label": "robert peter holland",
+                                                  "children": [
+                                                    {
+                                                      "data": "10202297",
+                                                      "expandedIcon": "ui-icon-business",
+                                                      "collapsedIcon": "ui-icon-business",
+                                                      "label": "lead gen solutions limited",
+                                                      "children": [
+                                                        {
+                                                          "data": "923628850",
+                                                          "expandedIcon": "ui-icon-person",
+                                                          "collapsedIcon": "ui-icon-person",
+                                                          "label": "laura jane holland"
+                                                        }
+                                                      ],
+                                                      "z": 1
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "data": [
+                        {
+                          "data": "921081345",
+                          "expandedIcon": "ui-icon-person",
+                          "collapsedIcon": "ui-icon-person",
+                          "label": "Preeti Sharma (Company Secretary)",
+                          "children": [
+                            {
+                              "data": "07847369",
+                              "expandedIcon": "ui-icon-business",
+                              "collapsedIcon": "ui-icon-business",
+                              "label": "bizopus technologies ltd",
+                              "children": [
+                                {
+                                  "data": "916456818",
+                                  "expandedIcon": "ui-icon-person",
+                                  "collapsedIcon": "ui-icon-person",
+                                  "label": "yogender  sharma",
+                                  "children": [
+                                    {
+                                      "data": "08264428",
+                                      "expandedIcon": "ui-icon-business",
+                                      "collapsedIcon": "ui-icon-business",
+                                      "label": "exlray limited",
+                                      "children": [
+                                        {
+                                          "data": "913441374",
+                                          "expandedIcon": "ui-icon-person",
+                                          "collapsedIcon": "ui-icon-person",
+                                          "label": "tarun  kumar",
+                                          "children": [
+                                            {
+                                              "data": "09718853",
+                                              "expandedIcon": "ui-icon-business",
+                                              "collapsedIcon": "ui-icon-business",
+                                              "label": "whitehall finance limited",
+                                              "children": [
+                                                {
+                                                  "data": "920855853",
+                                                  "expandedIcon": "ui-icon-person",
+                                                  "collapsedIcon": "ui-icon-person",
+                                                  "label": "robert peter holland",
+                                                  "children": [
+                                                    {
+                                                      "data": "10202297",
+                                                      "expandedIcon": "ui-icon-business",
+                                                      "collapsedIcon": "ui-icon-business",
+                                                      "label": "lead gen solutions limited",
+                                                      "children": [
+                                                        {
+                                                          "data": "923628850",
+                                                          "expandedIcon": "ui-icon-person",
+                                                          "collapsedIcon": "ui-icon-person",
+                                                          "label": "laura jane holland"
+                                                        }
+                                                      ],
+                                                      "z": 1
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]              
+            }
+          }
+        },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  
+  "definitions": {
+    "Login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "user@domain.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "1gHySRA56aj>tf421o"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Filters": {
+      "type": "object",
+      "example":{"filterData":[{"chip_group":"Status","chip_values":["live"]},{"chip_group":"Company Name/Number","chip_values":["12345678"],"companySearchAndOr":"or"},{"chip_group":"Industry","chip_values":["A - agriculture forestry and fishing"],"chip_industry_sic_codes":["agriculture forestry and fishing"]},{"chip_group":"Company Age","chip_values":["Less than 5"],"ageOperator":["less"]},{"chip_group":"Incorporation Date","chip_values":[["21/09/2020","30/09/2020"]]},{"chip_group":"Financials","chip_values":[{"key":"turnover","selected_year":"true","greater_than":"1000","less_than":"10000","financialBoolean":true},{"key":"grossProfit","selected_year":"true","greater_than":"1000","less_than":"10000","financialBoolean":true}]},{"chip_group":"Preferences","chip_values":["Company must have charges details","Company must have finances","Company must have corporate land","Company must have CCJ","Company must have website","Company must have phone number","Exclude  dormant companies","Exclude  liquidation companies"],"preferenceOperator":[{"hasCharges":"true"},{"hasFinances":"true"},{"hasLandCorporate":"true"},{"hasCCJInfo":"true"},{"hasWebsite":"true"},{"hasContactNumber":"true"},{"dormant_status":"exclude"},{"liquidation_status":"exclude"}]}]} ,
+      "xml": {
+        "name": "User"
+      }
+    },
+    "CompanyNumber": {
+      "type": "string",
+      "example": "00445790",
+      "xml": {
+        "name": "CompanyNumber"
+      }
+    },
+    "page": {
+      "type": "number",
+      "example": "1",
+      "xml": {
+        "name": "page"
+      }
+    },
+    "Token": {
+      "type": "string",
+      "example": "5ae6e577b3731gfe8c601208_996895574",
+      "xml": {
+        "name": "Token"
+      }
+    },
+    "DirectorId": {
+      "type": "string",
+      "example": "10831906",
+      "xml": {
+        "name": "DirectorId"
+      }
+    }
+  }
+  
+}

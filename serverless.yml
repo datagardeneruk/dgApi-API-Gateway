@@ -1,0 +1,8 @@
+org: iamwaddy
+app: my-express-app
+component: express
+name: express-starter
+
+inputs:
+  src: ./
+  region: eu-west-2
